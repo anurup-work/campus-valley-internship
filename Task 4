@@ -1,0 +1,89 @@
+#include <iostream>
+using namespace std;
+int factorial(int n) {
+ if (n == 0 || n == 1) {
+ return 1;
+ } else {
+ return n * factorial(n - 1);
+ }
+}
+bool isPrime(int n) {
+ if (n <= 1) {
+ return false;
+ }
+ for (int i = 2; i <= n / 2; ++i) {
+ if (n % i == 0) {
+ return false;
+ }
+ }
+ return true;
+}
+bool isPalindrome(int n) {
+ int reversedNum = 0, originalNum = n;
+ while (n > 0) {
+ reversedNum = reversedNum * 10 + n % 10;
+ n /= 10;
+ }
+ return originalNum == reversedNum;
+}
+bool isArmstrong(int n) {
+ int sum = 0, temp = n;
+ while (temp != 0) {
+ int digit = temp % 10;
+ sum += digit * digit * digit;
+ temp /= 10;
+ }
+ return sum == n;
+}
+int main() {
+ while (true) {
+ int choice, num;
+ cout << "Press 1 to calculate the factorial of a number\n";
+ cout << "Press 2 to check whether the given number is prime or not\n";
+ cout << "Press 3 to check palindrome or not\n";
+ cout << "Press 4 to check Armstrong or not\n";
+ cout << "Press 5 to exit\n";
+ cout << "Enter your choice: ";
+ cin >> choice;
+ switch (choice) {
+ case 1:
+ cout << "Enter a number: ";
+ cin >> num;
+ cout << "Factorial of " << num << " is: " << factorial(num) << endl;
+ break;
+ case 2:
+ cout << "Enter a number: ";
+ cin >> num;
+ if (isPrime(num)) {
+ cout << num << " is a prime number.\n";
+ } else {
+ cout << num << " is not a prime number.\n";
+ }
+ break;
+ case 3:
+ cout << "Enter a number: ";
+ cin >> num;
+ if (isPalindrome(num)) {
+ cout << num << " is a palindrome.\n";
+ } else {
+ cout << num << " is not a palindrome.\n";
+ }
+ break;
+ case 4:
+ cout << "Enter a number: ";
+ cin >> num;
+ if (isArmstrong(num)) {
+ cout << num << " is an Armstrong number.\n";
+ } else {
+ cout << num << " is not an Armstrong number.\n";
+ }
+ break;
+ case 5:
+ cout << "Exiting program.\n";
+ return 0;
+ default:
+ cout << "Invalid choice. Please enter a number between 1 and 5.\n";
+ }
+ }
+ return 0;
+}
