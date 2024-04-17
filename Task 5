@@ -1,0 +1,27 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+struct Employee {
+ string name;
+ int age;
+ double salary;
+};
+int main() {
+ ofstream outFile("EmpData.txt", ios::app); // Open file in append mode
+ if (!outFile) {
+ cerr << "Error opening file." << endl;
+ return 1;
+ }
+ Employee emp;
+ cout << "Enter employee details:" << endl;
+ cout << "Name: ";
+ getline(cin, emp.name);
+ cout << "Age: ";
+ cin >> emp.age;
+ cout << "Salary: ";
+ cin >> emp.salary;
+ outFile << "Name: " << emp.name << ", Age: " << emp.age << ", Salary: " << emp.salary << endl;
+ cout << "Employee details written to file successfully." << endl;
+ outFile.close();
+ return 0;
+}
